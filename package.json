@@ -1,0 +1,31 @@
+{
+  "name": "t3h-fs-helper",
+  "version": "1.0.0",
+  "description": "My personal promise based fs helper library.",
+  "main": "t3h-fs-helper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t3hmun/t3h-fs-helper.git"
+  },
+  "keywords": [
+    "fs",
+    "promise",
+    "helper",
+    "ensureDirCreated",
+    "read",
+    "write"
+  ],  
+  "author": {
+    "name": "Manish Parekh",
+    "email": "npm@t3hmun.com",
+    "web": "http://www.t3hmun.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/t3hmun/t3h-fs-helper/issues"
+  },
+  "homepage": "https://github.com/t3hmun/t3h-fs-helper#readme"
+}
