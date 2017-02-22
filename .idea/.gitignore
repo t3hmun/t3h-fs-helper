@@ -1,0 +1,11 @@
+# This is a simple node.js lib so IDEA only needs a minimal set of files to work.
+# I intend to keep the abolute minimum cruft to make the project work.
+
+# Ingore everything.
+*
+
+# Essential project files.
+!modules.xml
+!vcs.xml
+!t3h-fs-helper.iml
+!.gitignore
