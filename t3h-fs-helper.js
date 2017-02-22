@@ -15,30 +15,36 @@ const path = require('path');
 /**
  * Checks if a dir and its parent dirs exists and creates them if they don't exist.
  * @param {string} dirPath - The path of the dir.
- * @returns {Promise} - Error or void on success.
+ * @returns {Promise} - And fs error (from fs.stat or fs.mkdir) or void on success.
  */
 function ensureDirCreated(dirPath) {
     return new Promise((resolve, reject) => {
         fs.stat(dirPath, (err) => {
             if (err) {
+                // ENOENT is the C error for error no entry, which means missing.
                 if (err.code == 'ENOENT') {
                     let dirAbove = path.join(dirPath, '../');
-                    // Make sure the super-dir exists.
+                    // Recursively make sure the super-dir exists before creating this one.
                     ensureDirCreated(dirAbove).then(() => {
                         fs.mkdir(dirPath, 666, (err) => {
                             if (err) {
                                 reject(err);
                             } else {
+                                // Directory created, success.
                                 resolve();
+                                // There is no more code after this point.
                             }
                         });
                     }).catch((err) => {
+                        // Error in the recursive call, propagate the error down to the original caller.
                         reject(err);
                     });
                 } else {
+                    // Any fs error that isn't ENOENT must be dealt with by the caller.
                     reject(err);
                 }
             } else {
+                // Directory already exists, success.
                 resolve();
             }
         });
@@ -64,9 +70,9 @@ function readFilesInDir(dirPath, filterFunc, encoding) {
             }
             let reads = [];
             let failed = false;
-            // In theory this sets the computer readings all the files in parallel.
-            // Disks generally don't like being asked to do things in parallel.
-            // However I think I'll trust node and the OS to deal with that detail, life is short.
+            // In theory this sets the computer reading all the files in parallel.
+            // Disks generally don't like being asked to do things in parallel (slow).
+            // However I think I'll trust Node.js and the OS to deal with that detail, life is short.
             files.forEach((file) => {
                 let filePath = path.join(dirPath, file);
                 reads.push(new Promise((resolve, reject) => {
