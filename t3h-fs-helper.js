@@ -104,6 +104,15 @@ function readFilesInDir(dirPath, filterFunc, encoding) {
     });
 }
 
+/**
+ * Default function for the many method.
+ * @param item
+ * @return {*} - the same object unmodified.
+ */
+function same(item) {
+
+    return item;
+}
 
 /**
  * Writes data from each item.
@@ -111,8 +120,7 @@ function readFilesInDir(dirPath, filterFunc, encoding) {
  * @param {function({}):[]} func - Function that returns the [dir, fileName, data] for each item.
  * @return {Promise} - void.
  */
-function writeMany(items, func) {
-    //console.log(items);
+function writeMany(items, func = same) {
     let writes = [];
     items.forEach((item) => {
         let [dir, fileName, data] = func(item);
