@@ -3,14 +3,14 @@
  */
 'use strict';
 
-exports.ensureDirCreated = ensureDirCreated;
-exports.readFilesInDir = readFilesInDir;
-exports.write = write;
-exports.writeMany = writeMany;
-exports.read = read;
-
 const fs = require('fs');
 const path = require('path');
+
+module.exports.ensureDirCreated = ensureDirCreated;
+module.exports.readFilesInDir = readFilesInDir;
+module.exports.write = write;
+module.exports.writeMany = writeMany;
+module.exports.read = read;
 
 /**
  * Checks if a dir and its parent dirs exists and creates them if they don't exist.
