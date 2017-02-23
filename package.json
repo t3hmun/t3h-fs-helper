@@ -1,6 +1,6 @@
 {
   "name": "t3h-fs-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My personal promise based fs helper library.",
   "main": "t3h-fs-helper.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "ensureDirCreated",
     "read",
     "write"
-  ],  
+  ],
   "author": {
     "name": "Manish Parekh",
     "email": "npm@t3hmun.com",
